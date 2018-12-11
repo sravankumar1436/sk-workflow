@@ -1,0 +1,195 @@
+<template>
+    <div>
+        <div>
+            <b-container>
+                <h4>Commit Workflow Configuration for {{ templateId.toUpperCase() }}</h4>
+                <br>
+                <b-row align-h="start">
+                    <b-col cols="2">
+                        <strong>Workflow Name: </strong>
+                    </b-col>
+                    <b-col>
+                        <input ref="configName" type="text" v-model="configName" />
+                    </b-col>
+                </b-row>
+                <b-row align-h="start">
+                    <b-col cols="2">
+                        <strong>User ID: </strong>
+                    </b-col>
+                    <b-col>
+                        <input type="text" v-model="userId" />        
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col cols="6">
+                        <b-alert
+                            :show="showFailureAlert"
+                            variant="danger"
+                            dismissible
+                            @dismissed="showFailureAlert=false"
+                        >
+                            {{ failureMsg }}
+                        </b-alert>
+                    </b-col>                
+                </b-row>
+                <b-row>
+                    <b-col cols="6">
+                        <b-alert
+                            :show="dismissCountdown"
+                            variant="success"
+                            dismissible
+                            @dismissed="dismissCountdown=0"
+                            @dismiss-count-down="countDownChanged"
+                        >
+                            {{ successMsg }}
+                        </b-alert>
+                    </b-col>
+                </b-row>
+                <br>
+                <br>
+            </b-container>
+        </div>
+        <b-button
+            variant="primary"
+            :disabled="committed"
+            @click.once="commit"
+        >
+            Commit Configuration
+        </b-button>
+        <b-button variant="primary" @click="cancel">Cancel</b-button>
+        <div v-if="! valid">
+            <input type="textarea" cols="80" rows="20" :value="validationError" />
+        </div>
+    </div>
+</template>
+
+<script>
+ import moment from 'moment';
+ import { eventBus } from '../main.js';
+ import Workflow from '../Workflow.js';
+ 
+ export default {
+     props: {
+         templateId: {
+             required: true
+         },
+         baseTemplate: {
+             type: Object,
+             required: true
+         },
+         stepTemplate: {
+             type: Object,
+             required: true
+         },
+         modify: {
+             type: Boolean,
+             required: true
+         }
+     },
+     data() {
+         return {
+             configName: '',
+             userId: '',
+             committed: false,
+             dismissSecs: 2,
+             dismissCountdown: 0,
+             successMsg: '',
+             failureMsg: '',
+             showFailureAlert: false,
+             valid: true,
+             validationError: ''
+         };
+     },
+     methods: {
+         commit() {
+             if (! this.$refs.configName.value) {
+                 this.failureMsg = 'Workflow Name is required';
+                 this.showFailureAlert = true;
+                 return;
+             } else {
+                 this.validate();
+
+                 if (this.valid) {
+                     if (this.modify) {
+                         this.updateWorkflow();
+                     } else {
+                         this.insertWorkflow();   
+                     }                                          
+                 }
+             }             
+         },
+         validate() {
+             const workflow = new Workflow(this.baseTemplate, this.stepTemplate);
+             if (! workflow.isValid()) {
+                 this.validationError = 'Cannot save the workflow to the database:\n\n' +
+                                        'Steps containing invalid data:\n\n' +
+                                        workflow.displayInvalidFields();
+                 this.valid = false;
+             } else {
+                 this.valid = true;                 
+             }
+         },
+         insertWorkflow() {             
+             this.$http.post('save_workflow',
+                             {
+                                 assay: this.templateId,
+                                 workflowName: this.configName,
+                                 baseConfig: JSON.stringify(this.baseTemplate),
+                                 analysisConfig: JSON.stringify(this.stepTemplate),
+                                 userId: this.userId,
+                                 lastModified: moment().unix()
+                             })
+                 .then (
+                     response =>  {
+                         this.successMsg = response.body;
+                         this.dismissCountdown = this.dismissSecs;
+                         this.committed = true;
+                     },
+                     err => {
+                         this.failureMsg = err.body;
+                         this.showFailureAlert = true;
+                     }
+                 );
+         },
+         updateWorkflow() {
+             //             let changeSet = this.$store.getters.getChangeSet(this.templateId);
+             this.$http.post('update_workflow',
+                             {
+                                 //                                 changeSet: changeSet,
+                                 assay: this.templateId,
+                                 workflowName: this.configName,
+                                 baseConfig: JSON.stringify(this.baseTemplate),
+                                 analysisConfig: JSON.stringify(this.stepTemplate),
+                                 userId: this.userId,
+                                 lastModified: moment().unix()
+                             })
+                 .then (
+                     response =>  {
+                         this.successMsg = response.body;
+                         this.dismissCountdown = this.dismissSecs;
+                         this.committed = true;
+                     },
+                     err => {
+                         this.failureMsg = err.body;
+                         this.showFailureAlert = true;
+                     }
+                 );             
+         },
+         countDownChanged(dismissCountdown) {
+             this.dismissCountdown = dismissCountdown;
+         },
+         cancel() {
+             this.$router.push({
+                 name: 'Home'
+             });
+             if (this.modify) {
+                 eventBus.$emit('setModify', { modify: false });    
+             }             
+         }
+     },
+     created() {
+         let params = this.baseTemplate.config.baseOptions.find((e) => e.name === 'runtimeParameters');
+         this.configName = params.options.find((e) => e.name === 'workflowName').value;
+     }
+ };
+</script>

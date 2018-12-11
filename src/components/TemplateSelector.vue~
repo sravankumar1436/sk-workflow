@@ -1,0 +1,101 @@
+<template>
+    <div>
+        <select
+            class="select.input-lg"
+            id="select-template"
+            v-model="selected"
+            @change="templateSelected"
+        >
+            <option disabled value=''>Select a workflow template</option>
+            <option
+                :disabled="disableTemplate(t.title)"
+                v-for="t in templates"
+                :value="t.title"
+            >
+                {{ t.title }}
+            </option>
+        </select>
+        <br>
+        <br>
+        <div class="form-group">
+            <label for="wf_description"><strong>Workflow Template Description</strong></label>
+        </div>
+        <div class="form-group">
+            <textarea
+                id="wf_description"
+                class="form-group"
+                rows="2" cols="80"
+                placeholder="workflow description"
+                v-model="description"
+            >
+            </textarea>
+        </div>
+        <b-button variant="primary" @click="configure">Configure Workflow</b-button>
+        <b-button variant="primary" @click="modify">Modify Saved Configuration</b-button>
+
+    </div>
+</template>
+
+<script>
+ 
+ /* eslint-disable no-console */
+ export default {
+     data () {
+         return {
+             selected: '',
+             selectedTemplate: null,
+             description: '',
+             msg: '',
+             availableTemplates: ['AAT']
+         };
+     },
+     computed: {
+         templates() {
+             let templateList = this.$store.getters.getTemplateList;
+             if (templateList.length === 0) {
+                 this.getTemplateList();
+                 templateList = this.$store.getters.getTemplateList;
+             }
+
+             return templateList.filter(this.notBase);
+         }
+     },
+     methods: {
+         notBase(templateObj) {
+             return templateObj.title !== 'Base';
+         },
+         templateSelected() {
+             this.selectedTemplate = this.templates.find((e) => e.title === this.selected);
+             this.description = this.selectedTemplate.description;
+             this.$emit('templateSelected', this.selectedTemplate);
+         },
+         getTemplateList() {
+             this.$http.get('templates')
+                 .then(
+                     function (response) {
+                         console.log(response);
+                         return response.json();
+                     },
+                     /*eslint-disable no-unused-vars*/
+                     response => alert('Error getting workflow templates')
+                     /*eslint-enable no-unused-vars*/
+                 ).then( templates => {
+                     console.log(templates);
+                     this.$store.state.templateList = templates;
+                 });
+         },
+         disableTemplate(title) {
+             if (this.availableTemplates.indexOf(title) === -1) {
+                 return true;
+             }
+             return false;
+         },
+         configure() {
+             this.$emit('configureNewWorkflow');
+         },
+         modify() {
+             this.$emit('modifyWorkflow');
+         }
+     }
+ };
+</script>
