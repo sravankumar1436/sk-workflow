@@ -1,0 +1,69 @@
+{
+    "templateList": [
+        {
+            "name": "base",
+            "title": "Base",
+            "description": "Base Workflow Configuration"
+        },
+        {
+            "name": "aat",
+            "title": "Adventitious agent testing",
+            "description": ""
+        },
+        {
+            "name": "gensty",
+            "title": "Genetic Stability",
+            "description": "Detect integration of vector in CHO host"
+        },
+        {
+            "name": "tsvc",
+            "title": "Target-Specific Variant Calling",
+            "description": "Call Variants in targeted regions"
+            },
+        {
+            "name": "vca",
+            "title": "Variant Calling", 
+            "description": "General variant calling"
+        },
+        {
+            "name": "bwa",
+            "title": "Bwa",
+            "description": "Burrows-Wheeler Alignment"
+        },
+        {
+            "name": "combine_files",
+            "title": "Combine Files",
+            "description": "Concatenates two or more files"
+        },
+        {
+            "name": "cutadapt",
+            "title": "Cutadapt",
+            "description": "Adapter and quality trimming"
+        },
+        {
+            "name": "fqqf",
+            "title": "FastQ Quality Filter",
+            "description": "Filter low-quality reads"
+        },
+        {
+            "name": "make_pairs",
+            "title": "Make Pairs",
+            "description": "Create paired reads files"
+        },
+        {
+            "name": "nomismatch",
+            "title": "Demultiplex",
+            "description": "Filter reads with  mismatches to the index"
+        },
+        {
+            "name": "patch_headers",
+            "title": "Patch Headers",
+            "description": "Remove spaces from read headers in fastq files"
+        },
+        {
+            "name": "remove_duplicates",
+            "title": "Remove Duplicates",
+            "description": "Filter duplicate reads"
+        }
+    ]
+}

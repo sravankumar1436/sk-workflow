@@ -1,0 +1,12 @@
+{
+    "title": "getseq_fq.py Options",
+    "options": [
+        {
+            "name": "memBufferSize",
+            "label": "Memory Buffer Size (-m)",
+            "type": "Number",
+            "optionName": "-m",
+            "value": 3145728
+        }
+    ]
+}

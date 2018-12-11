@@ -1,0 +1,21 @@
+{
+    "title": "combineFiles.pl Options",
+    "options": [
+        {
+            "name": "outputFilePrefix",
+            "label": "Output File Prefix",
+            "type": "String",
+            "value": "combined",
+            "fieldLength": 20,
+            "required": true
+        },
+        {
+            "name": "outputFileExt",
+            "label": "Output File Extension",
+            "type": "String",
+            "value": "fastq",
+            "fieldLength": 6,
+            "readOnly": true
+        }
+    ]
+}

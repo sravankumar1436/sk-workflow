@@ -1,0 +1,36 @@
+{
+    "title": "noMismatch.py Options",
+    "options": [
+        {
+            "name": "outputFileExt",
+            "label": "Output File Extension",
+            "type": "String",
+            "value": "dmx.fastq",
+            "fieldLength": 10,
+            "readOnly": true
+        },
+        {
+            "name": "indexList",
+            "label": "Index List (-x)",
+            "type": "Array",
+            "optionName": "-x",
+            "value": [
+                {
+                    "label": "Index 1",
+                    "type": "String",
+                    "fieldLength": 40,
+                    "value": ""
+                },
+                {
+                    "label": "Index 2",
+                    "type": "String",
+                    "fieldLength": 40,
+                    "value": ""
+                }
+            ],
+            "fieldLength": 20,
+            "pattern": "^[ATGC]+$",
+            "required": true
+        }
+    ]
+}

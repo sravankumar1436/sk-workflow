@@ -1,0 +1,216 @@
+{
+    "title": "bwa Options",
+    "options": [
+        {
+            "name": "referenceFiles",
+            "type": "Label",
+            "value": "Reference Files"
+        },
+        {
+            "name": "references",
+            "label": "References",
+            "type": "Array",
+            "required": true,
+            "dynamic": true,
+            "value": [
+                {
+                    "label": "Reference",
+                    "type": "String",
+                    "fieldLength": 80,
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "name": "algorithmOptions",
+            "type": "Label",
+            "value": "Algorithm Options"
+        },
+        {
+            "name": "threads",
+            "label": "Threads (-t)",
+            "type": "Number",
+            "optionName": "-t",
+            "value": 1
+        },
+        {
+            "name": "minimum_seed_length",
+            "label": "Minimum Seed Length (-k)",
+            "type": "Number",
+            "optionName": "-k",
+            "value": 19
+        },
+        {
+            "name": "max_occurrences",
+            "label": "Maximum Occurrences (-c)",
+            "type": "Number",
+            "optionName": "-c",
+            "value": 500
+        },
+        {
+            "name": "skip_full_exact_matches",
+            "label": "Skip Full Exact Matches (-e)",
+            "type": "Boolean",
+            "optionName": "-e",
+            "value": false
+        },
+        {
+            "name": "skip_pairing",
+            "label": "Skip Pairing (-P)",
+            "type": "Boolean",
+            "optionName": "-P",
+            "value": false
+        },
+        {
+            "name": "skip_mate_rescue",
+            "label": "Skip Mate Rescue (-S)",
+            "type": "Boolean",
+            "optionName": "-S",
+            "value": false
+        },
+        {
+            "name": "scoringOptions",
+            "type": "Label",
+            "value": "Scoring Options"
+        },
+        {
+            "name": "matching_score",
+            "label": "Matching Score (-A)",
+            "type": "Number",
+            "optionName": "-A",
+            "value": 1
+        },
+        {
+            "name": "mismatch_penalty",
+            "label": "Mismatch Penalty (-B)",
+            "type": "Number",
+            "optionName": "-B",
+            "value": 1
+        },
+        {
+            "name": "unpaired_read_penalty",
+            "label": "Unpaired Read Penalty (-U)",
+            "type": "Number",
+            "optionName": "-U",
+            "value": 17
+        },
+        {
+            "name": "gap_open_penalty",
+            "label": "Gap Open Penalty (-O)",
+            "type": "Array",
+            "optionName": "-O",
+            "consistent": true,
+            "value": [
+                {
+                    "label": "Deletion",
+                    "type": "Number",
+                    "value": 6
+                },
+                {
+                    "label": "Insertion",
+                    "type": "Number",
+                    "value": 6
+                }
+            ]
+        },
+        {
+            "name": "gap_extension_penalty",
+            "label": "Gap Extension Penalty (-E)",
+            "type": "Array",
+            "optionName": "-E",
+            "consistent": true,
+            "value": [
+                {
+                    "label": "Deletion",
+                    "type": "Number",
+                    "value": 1
+                },
+                {
+                    "label": "Insertion",
+                    "type": "Number",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "name": "clipping_penalty",
+            "label": "Clipping Penalty (-L)",
+            "type": "Array",
+            "optionName": "-L",
+            "consistent": true,
+            "value": [
+                {
+                    "label": "5-prime end",
+                    "type": "Number",
+                    "value": 5
+                },
+                {
+                    "label": "3-prime end",
+                    "type": "Number",
+                    "value": 5
+                }
+            ]
+        },
+        {
+            "name": "insert_size_stats",
+            "label": "Insert Size Statistics (-I)",
+            "type": "Array",
+            "optionName": "-I",
+            "value": [
+                {
+                    "label": "Mean",
+                    "type": "Number",
+                    "value": null
+                },
+                {
+                    "label": "Std. Deviation",
+                    "type": "Number",
+                    "value": null
+                },
+                {
+                    "label": "Max",
+                    "type": "Number",
+                    "value": null
+                },
+                {
+                    "label": "Min",
+                    "type": "Number",
+                    "value": null
+                }
+            ]
+        },
+        {
+            "name": "inputOutputOptions",
+            "type": "Label",
+            "value": "Input/Output Options"
+        },
+        {
+            "name": "min_alignment_score",
+            "label": "Minimum Alignment Score (-T)",
+            "type": "Number",
+            "optionName": "-T",
+            "value": 30
+        },
+        {
+            "name": "output_all_alignments",
+            "label": "Output All Alignments (-a)",
+            "type": "Boolean",
+            "optionName": "-a",
+            "value": false
+        },
+        {
+            "name": "skip_full_exact_matches",
+            "label": "Skip Full Exact Matches (-e)",
+            "type": "Boolean",
+            "optionName": "-e",
+            "value": false
+        },
+        {
+            "name": "smart_pairing",
+            "label": "Smart Pairing (-p)",
+            "type": "Boolean",
+            "optionName": "-p",
+            "value": false
+        }
+    ]
+}

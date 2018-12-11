@@ -1,0 +1,13 @@
+{
+    "title": "patchHeaders.pl Options",
+    "options": [
+        {
+            "name": "outputFileExt",
+            "label": "Output File Extension",
+            "type": "String",
+            "value": "patched.fastq",
+            "fieldLength": 14,
+            "readOnly": true
+        }
+    ]
+}

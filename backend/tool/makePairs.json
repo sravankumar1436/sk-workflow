@@ -1,0 +1,45 @@
+{
+    "title": "makePairs.sh Options",
+    "options": [
+        {
+            "name": "outputFileExt",
+            "label": "Output File Extension",
+            "type": "String",
+            "value": "paired.fastq",
+            "fieldLength": 13,
+            "readOnly": true
+        },
+        {
+            "name": "readLabels",
+            "label": "Read Labels (--read-labels)",
+            "type": "Array",
+            "optionName": "--read-labels",
+            "required": true,
+            "value": [
+                {
+                    "label": "Forward",
+                    "type": "String",
+                    "fieldLength": 5,
+                    "align": "right",
+                    "value": ""
+                },
+                {
+                    "label": "Reverse",
+                    "type": "String",
+                    "fieldLength": 5,
+                    "align": "right",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "name": "outputDir",
+            "label": "Output Directory (--output-dir)",
+            "type": "String",
+            "optionName": "--output-dir",
+            "fieldLength": 50,
+            "required": true,
+            "value": ""
+        }
+    ]
+}
