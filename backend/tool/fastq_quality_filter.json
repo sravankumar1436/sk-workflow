@@ -1,0 +1,41 @@
+{
+    "title": "fastq_quality_filter Options",
+    "options": [
+        {
+            "name": "outputFileExt",
+            "label": "Output File Extension",
+            "type": "String",
+            "value": "fqf.fastq",
+            "fieldLength": 12,
+            "readOnly": true
+        },
+        {
+            "name": "minQualityScore",
+            "label": "Minimum Quality Score (-q)",
+            "type": "Number",
+            "optionName": "-q",
+            "value": "20"
+        },
+        {
+            "name": "usePhread33Format",
+            "label": "Use Phread+33 Format (-Q33)",
+            "type": "Boolean",
+            "optionName": "-Q33",
+            "value": true
+        },
+        {
+            "name": "verbose",
+            "label": "Verbose (-v)",
+            "type": "Boolean",
+            "optionName": "-v",
+            "value": true
+        },
+        {
+            "name": "pctLowQualityBases",
+            "label": "Percent Low Quality Bases (-p)",
+            "type": "Number",
+            "optionName": "-p",
+            "value": 75
+        }
+    ]
+}

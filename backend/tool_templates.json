@@ -1,0 +1,12 @@
+{
+    "toolTemplateList": [
+        {
+            "name": "runPhase",
+            "description": "RunPhase Configuration"
+        },
+        {
+            "name" : "bwa",
+            "description": "BWA Configuration"
+        }
+    ]
+}

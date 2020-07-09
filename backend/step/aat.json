@@ -1,0 +1,547 @@
+{
+    "name": "AAT",
+    "valid": false,
+    "sections": [
+        {
+            "name": "preprocess",
+            "label": "Pre-Process",
+            "valid": false,
+            "steps": [
+                {
+                    "name": "demultiplex",
+                    "label": "Demultiplex",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": true,
+                    "valid": false,
+                    "externalPrograms": [
+                        { "name": "noMismatch.py", "valid": false }
+                    ]
+                },
+                {
+                    "name": "trim",
+                    "label": "Trim",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": true,
+                    "valid": true,
+                    "externalPrograms": [
+                        { "name": "cutadapt", "valid": false }
+                    ]
+                },
+                {
+                    "name": "qualityFilter",
+                    "label": "Quality Filter",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": true,
+                    "valid": true,
+                    "externalPrograms": [
+                        { "name": "fastq_quality_filter", "valid": false }
+                    ]
+                },
+                {
+                    "name": "removeDuplicates",
+                    "label": "Remove Duplicates",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": true,
+                    "valid": true,
+                    "externalPrograms": [
+                        { "name": "removeDuplicates.py", "valid": false }
+                    ]
+                },
+                {
+                    "name": "generatePairs",
+                    "label": "Generate Pairs",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": true,
+                    "valid": false,
+                    "externalPrograms": [
+                        { "name": "makePairs.sh", "valid": false }
+                    ]
+                },
+                {
+                    "name": "headerPatching",
+                    "label": "Header Patching",
+                    "enabled": true,
+                    "notify": false,
+                    "deleteOutput": true,
+                    "valid": true,
+                    "externalPrograms": [
+                        { "name": "patchHeaders.pl", "valid": false }
+                    ]
+                },
+                {
+                    "name": "combineFiles",
+                    "label": "Combine Files",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": false,
+                    "valid": true,
+                    "externalPrograms": [
+                        { "name": "combineFiles.pl", "valid": false }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "analysis",
+            "label": "Analysis",
+            "valid": false,
+            "steps": [
+                {
+                    "name": "control",
+                    "label": "Control",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": false,
+                    "valid": false,
+                    "externalPrograms": [
+                        {
+                            "name": "bwa",
+                            "overrides": {
+                                "gap_extension_penalty": {
+                                    "value" : [2,2]
+                                },
+                                "min_alignment_score": {
+                                    "value": 50
+                                },
+                                "threads": {
+                                    "value": 25
+                                },
+                                "mismatch_penalty": {
+                                    "value": 4
+                                }
+                            },
+                            "valid": false
+                        },
+                        {
+                            "name": "comp_sam.py",
+                            "overrides": {
+                                "scoringString": {
+                                    "value": []
+                                }
+                            },
+                            "valid": false
+                        }
+                    ]
+                },
+                {
+                    "name": "ribosome",
+                    "label": "Ribosome",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": false,
+                    "valid": false,
+                    "externalPrograms": [
+                        {
+                            "name": "bwa",
+                            "overrides" : {
+                                "gap_extension_penalty": {
+                                    "value" : [2,2]
+                                },
+                                "min_alignment_score": {
+                                    "value": 50
+                                },
+                                "threads": {
+                                    "value": 25
+                                },
+                                "mismatch_penalty": {
+                                    "value": 4
+                                }
+                            },
+                            "valid": false
+                        },
+                        {
+                            "name": "comp_sam.py",
+                            "overrides": {
+                                "scoringString": {
+                                    "value": []
+                                }
+                            },
+                            "valid": false
+                        },
+                        {
+                            "name": "rmseq_fq.py",
+                            "valid": true
+                        }
+                    ]
+                },
+                {
+                    "name": "phage",
+                    "label": "Phage",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": false,
+                    "valid": false,
+                    "externalPrograms": [
+                        {
+                            "name": "bwa",
+                            "overrides": {
+                                "min_alignment_score": {
+                                    "value": 50
+                                },
+                                "threads": {
+                                    "value": 25
+                                }
+                            },
+                            "valid": false
+                        },
+                        {
+                            "name": "comp_sam.py",
+                            "overrides": {
+                                "scoringString": {
+                                    "value": []
+                                }
+                            },
+                            "valid": false
+                        },
+                        {
+                            "name": "rmseq_fq.py",
+                            "valid": true
+                        }
+                    ]
+                },
+                {
+                    "name": "filter",
+                    "label": "Filter",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": false,
+                    "valid": false,
+                    "externalPrograms": [
+                        {
+                            "name": "bwa",
+                            "overrides": {
+                                "min_alignment_score": {
+                                    "value": 50
+                                },
+                                "threads": {
+                                    "value": 25
+                                }
+                            },
+                            "valid": false
+                        },
+                        {
+                            "name": "comp_sam.py",
+                            "overrides": {
+                                "scoringString": {
+                                    "value": []
+                                }
+                            },
+                            "valid": false
+                        },
+                        {
+                            "name": "rmseq_fq.py",
+                            "valid": true
+                        }
+                    ]
+                },
+                {
+                    "name": "querydbs",
+                    "index": 4,
+                    "label": "Query Databases",
+                    "enabled": true,
+                    "notify": false,
+                    "deleteOutput": false,
+                    "valid": false,
+                    "externalPrograms": [
+                        {
+                            "name": "bwa",
+                            "overrides": {
+                                "references": {
+                                    "value": [
+                                        {
+                                            "label": "Ref 1",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 2",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 3",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        }
+                                    ]
+                                },
+                                "min_alignment_score": {
+                                    "value": 50
+                                },
+                                "threads": {
+                                    "value": 25
+                                }
+                            },
+                            "valid": false
+                        },
+                        {
+                            "name": "comp_sam.py",
+                            "overrides": {
+                                "scoringString": {
+                                    "value": []
+                                }
+                            },
+                            "valid": false
+                        },
+                        {
+                            "name": "getseq_fq.py",
+                            "valid": true
+                        }
+                    ]
+                },
+                {
+                    "name": "nt-viral",
+                    "index": 7,
+                    "label": "NT-Viral",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": false,
+                    "valid": false,
+                    "externalPrograms": [
+                        {
+                            "name": "bwa",
+                            "overrides": {
+                                "references": {
+                                    "value": [
+                                        {
+                                            "label": "Ref 1",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 2",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 3",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 4",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 5",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 6",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        }                                        
+                                    ]
+                                },
+                                "min_alignment_score": {
+                                    "value": 50
+                                },
+                                "threads": {
+                                    "value": 25
+                                }
+                            },
+                            "valid": false
+                        },
+                        {
+                            "name": "comp_sam.py",
+                            "overrides": {
+                                "calcDepthCoverage": {
+                                    "value": true
+                                },
+                                "bestMappingScore": {
+                                    "value": true
+                                },
+                                "reportChimericAlignments": {
+                                    "value": true
+                                },
+                                "maxChimericOverlap": {
+                                    "value": 20
+                                }
+                            },
+                            "valid": false
+                        }
+                    ]
+                },
+                {
+                    "name": "nt-bacterial",
+                    "index": 7,
+                    "label": "NT-Bacterial",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": false,
+                    "valid": false,
+                    "externalPrograms": [
+                        {
+                            "name": "bwa",
+                            "overrides": {
+                                "references": {
+                                    "value": [
+                                        {
+                                            "label": "Ref 1",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 2",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 3",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 4",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 5",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 6",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        }                                        
+                                    ]
+                                },
+                                "min_alignment_score": {
+                                    "value": 50
+                                },
+                                "threads": {
+                                    "value": 25
+                                }
+                            },
+                            "valid": false
+                        },
+                        {
+                            "name": "comp_sam.py",
+                            "overrides": {
+                                "calcDepthCoverage": {
+                                    "value": true
+                                },
+                                "bestMappingScore": {
+                                    "value": true
+                                },
+                                "reportChimericAlignments": {
+                                    "value": true
+                                },
+                                "maxChimericOverlap": {
+                                    "value": 20
+                                }
+                            },
+                            "valid": false
+                        }
+                    ]
+                },
+                {
+                    "name": "nt-fungi",
+                    "index": 8,
+                    "label": "NT-Fungi",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": false,
+                    "valid": false,
+                    "externalPrograms": [
+                        {
+                            "name": "bwa",
+                            "overrides": {
+                                "references": {
+                                    "value": [
+                                        {
+                                            "label": "Ref 1",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 2",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 3",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 4",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 5",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        },
+                                        {
+                                            "label": "Ref 6",
+                                            "type": "String",
+                                            "fieldLength": 80,
+                                            "value": ""
+                                        }                                        
+                                    ]
+                                },
+                                "min_alignment_score": {
+                                    "value": 50
+                                },
+                                "threads": {
+                                    "value": 25
+                                }
+                            },
+                            "valid": false
+                        },
+                        {
+                            "name": "comp_sam.py",
+                            "overrides": {
+                                "calcDepthCoverage": {
+                                    "value": true
+                                },
+                                "bestMappingScore": {
+                                    "value": true
+                                },
+                                "reportChimericAlignments": {
+                                    "value": true
+                                },
+                                "maxChimericOverlap": {
+                                    "value": 20
+                                }
+                            },
+                            "valid": false
+                        }
+                    ]
+                }
+                
+            ]
+        }
+    ]
+}

@@ -1,0 +1,97 @@
+{
+    "name": "gentsy",
+    "valid": false,
+    "sections": [
+        {
+            "name": "preprocess",
+            "label": "Pre-Process",
+            "valid": false,
+            "steps": [
+                {
+                    "name": "demultiplex",
+                    "label": "Demultiplex",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": true,
+                    "valid": false,
+                    "externalPrograms": [
+                        { "name": "noMismatch.py", "valid": false }
+                    ]
+                },
+                {
+                    "name": "trim",
+                    "label": "Trim",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": true,
+                    "valid": true,
+                    "externalPrograms": [
+                        { "name": "cutadapt", "valid": false }
+                    ]
+                },
+                {
+                    "name": "qualityFilter",
+                    "label": "Quality Filter",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": true,
+                    "valid": true,
+                    "externalPrograms": [
+                        { "name": "fastq_quality_filter", "valid": false }
+                    ]
+                },
+                {
+                    "name": "removeDuplicates",
+                    "label": "Remove Duplicates",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": true,
+                    "valid": true,
+                    "externalPrograms": [
+                        { "name": "removeDuplicates.py", "valid": false }
+                    ]
+                },
+                {
+                    "name": "generatePairs",
+                    "label": "Generate Pairs",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": true,
+                    "valid": false,
+                    "externalPrograms": [
+                        { "name": "makePairs.sh", "valid": false }
+                    ]
+                },
+                {
+                    "name": "headerPatching",
+                    "label": "Header Patching",
+                    "enabled": true,
+                    "notify": false,
+                    "deleteOutput": true,
+                    "valid": true,
+                    "externalPrograms": [
+                        { "name": "patchHeaders.pl", "valid": false }
+                    ]
+                },
+                {
+                    "name": "combineFiles",
+                    "label": "Combine Files",
+                    "enabled": false,
+                    "notify": false,
+                    "deleteOutput": false,
+                    "valid": true,
+                    "externalPrograms": [
+                        { "name": "combineFiles.pl", "valid": false }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "analysis",
+            "label": "Analysis",
+            "valid": false,
+            "steps": []
+        }
+    ]
+}
+

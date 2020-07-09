@@ -1,0 +1,13 @@
+{
+    "templateDir" : "../step/preProcess",
+    "templates" : {
+        "fasta2Fastq" : "convertFastq",
+        "demultiplex" : "noMismatch.py",
+        "trimAdapters" : "cutadapt",
+        "qualityFitler" : "fastqQualityFilter",
+        "pairGenerator" :  "makePairs",
+        "duplicateHandler" : "removeDuplicates",
+        "joinPairs" : "combineFiles",
+        "headerPatching" : "patchHeaders"
+    }      
+}

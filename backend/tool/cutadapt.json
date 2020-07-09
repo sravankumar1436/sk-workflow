@@ -1,0 +1,65 @@
+{
+    "title" : "Cutadapt Options",
+    "options" : [
+        {
+            "name": "outputFileExt",
+            "label": "Output File Extension",
+            "type": "String",
+            "value": "trim.fastq",
+            "fieldLength": 12,
+            "readOnly": true
+        },
+        {
+            "name": "minLength",
+            "label" : "Min. Length (-m, --minimum-length)",
+            "type" : "Number",
+            "optionName": "--minimum-length",
+            "value" : 10
+        },
+        {
+            "name": "trimQuality",
+            "label" : "Trim Quality (-q)",
+            "type" : "Array",
+            "optionName" : "-q",
+            "value" : [
+                {
+                    "label" : "5-prime Cutoff",
+                    "type" : "Number",
+                    "value" : 20
+                },
+                {
+                    "label" : "3-prime Cutoff",
+                    "type" : "Number",
+                    "value" : 20
+                }
+            ]
+        },
+        {
+            "name": "fivePrimeAdapter",
+            "label" : "5-prime Adapter (-g)",
+            "type" : "String",
+            "optionName" : "-g",
+            "pattern": "^[ATGC]+$",
+            "fieldLength": 30,
+            "value" : ""
+        },
+        {
+            "name": "threePrimeAdapter",
+            "label" : "3-prime Adapter (-a)",
+            "type" : "String",
+            "optionName" : "-a",
+            "pattern": "^[ATGC]+$",
+            "fieldLength": 30,
+            "value" : ""
+        },
+        {
+            "name": "fiveOrThreePrimeAdapter",
+            "label" : "5-prime or 3-prime Adapter (-b)",
+            "type" : "String",
+            "optionName" : "-b",
+            "pattern": "^[ATGC]+$",
+            "fieldLength": 30,
+            "value" : ""
+        }
+    ]
+}

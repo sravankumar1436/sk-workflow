@@ -1,0 +1,104 @@
+{
+    "title": "comp_sam.py Options",
+    "options": [
+        {
+            "name": "threads",
+            "label": "Threads (-t)",
+            "type": "Number",
+            "optionName": "-t",
+            "value": 6
+        },
+        {
+            "name": "scoringString",
+            "label": "Scoring String (-s)",
+            "type": "Array",
+            "optionName": "-s",
+            "value": [
+                {
+                    "label": "Matching Score",
+                    "type": "Number",
+                    "value": 1
+                },
+                {
+                    "label": "Mismatch Penalty",
+                    "type": "Number",
+                    "value": 4
+                },
+                {
+                    "label": "Gap Open Penalty",
+                    "type": "Number",
+                    "value": 6
+                },
+                {
+                    "label": "Gap Extension Penalty",
+                    "type": "Number",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "name": "calcDepthCoverage",
+            "label": "Calc. Depth and Coverage (--c)",
+            "type": "Boolean",
+            "optionName": "--c",
+            "value": false
+        },
+        {
+            "name": "bestMappingScore",
+            "label": "Use Best Mapping Score (--bm)",
+            "type": "Boolean",
+            "optionName": "--bm",
+            "value": false
+        },
+        {
+            "name": "reportChimericAlignments",
+            "label": "Report Chimeric Alignments (--rc)",
+            "type": "Boolean",
+            "optionName": "--rc",
+            "value": false
+        },
+        {
+            "name": "maxChimericOverlap",
+            "label": "Maximum Chimeric Overlap (--oc)",
+            "type": "Number",
+            "optionName": "--oc",
+            "value": 20
+        },
+        {
+            "name": "compressAnalysis",
+            "label": "Compress Analysis (--ca)",
+            "type": "Boolean",
+            "optionName": "--ca",
+            "value": false
+        },
+        {
+            "name": "taxomonyFiles",
+            "label": "Taxonomy/Description Files (-r)",
+            "type": "Array",
+            "optionName": "-r",
+            "dynamic": true,
+            "required": true,
+            "value": [
+                {
+                    "label": "Taxonomy 1",
+                    "type": "String",
+                    "fieldLength": 80,
+                    "value": ""
+                },
+                {
+                    "label": "Taxonomy 2",
+                    "type": "String",
+                    "fieldLength": 80,
+                    "value": ""
+                },
+                {
+                    "label": "Taxonomy 3",
+                    "type": "String",
+                    "fieldLength": 80,
+                    "value": ""
+                }
+            ]
+        }
+
+    ]
+}

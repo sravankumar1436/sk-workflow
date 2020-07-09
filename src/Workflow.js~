@@ -1,0 +1,23 @@
+export default function Workflow() {
+    this.baseConfig = {
+        this.baseOptions = [];
+    }
+    this.stepConfig = {
+        this.preProcessSection = {
+            name: "preprocess",
+            label: "Pre-Process",
+            valid: false,
+            steps: []
+        };
+        this.analysisSection = {
+            name: "analysis",
+            label: "Analysis",
+            valid: false,
+            steps: []            
+        };
+    }
+}
+
+Workflow.prototype.isValid() {
+    for 
+}

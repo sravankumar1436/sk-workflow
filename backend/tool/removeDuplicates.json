@@ -1,0 +1,20 @@
+{
+    "title": "removeDuplicates.py Options",
+    "options": [
+        {
+            "name": "outputFileExt",
+            "label": "Output File Extension",
+            "type": "String",
+            "value": "uniq.fastq",
+            "fieldLength": 11,
+            "readOnly": true
+        },
+        {
+            "name": "countDuplicates",
+            "label": "Count Duplicates (--count)",
+            "type": "Boolean",
+            "optionName": "--count",
+            "value": false
+        }
+    ]
+}

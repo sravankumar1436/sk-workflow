@@ -1,0 +1,206 @@
+{
+    "baseOptions": [
+        {
+            "name": "runtimeParameters",
+            "label": "Runtime Parameters",
+            "valid": false,
+            "options": [
+                {
+                    "name": "workflowName",
+                    "label": "Workflow Name",
+                    "value": "",
+                    "fieldLength": 50,
+                    "required": true,
+                    "unique": true,
+                    "table": "workflows"
+                },
+                {
+                    "name": "sampleId",
+                    "label": "Sample ID",
+                    "value": "S1",
+                    "fieldLength": 50,
+                    "required": true
+                },
+                {
+                    "name": "sampleName",
+                    "label": "Sample Name",
+                    "value": "",
+                    "fieldLength": 50,
+                    "required": true
+                },
+                {
+                    "name": "runDate",
+                    "label": "Run Date",
+                    "value": "",
+                    "type": "Date"
+                },
+                {
+                    "name": "instrumentId",
+                    "label": "Instrument ID",
+                    "value": "M03133",
+                    "required": true,
+                    "type": "ListSelection",
+                    "choices": ["M03133", "M04426"],
+                    "multiple": false,
+                    "placeholder": "Select an Instrument ID"
+                },
+                {
+                    "name": "runId",
+                    "label": "Run ID",
+                    "value": "",
+                    "fieldLength": 50,
+                    "required": true
+                }
+            ]
+        },
+        {
+            "name": "log",
+            "label" : "Log Options",
+            "valid": true,
+            "options": [
+                {
+                    "name": "logfile",
+                    "label": "Log File",
+                    "fieldLength": 50,
+                    "value": ""
+                },
+                {
+                    "name": "logLevel",
+                    "label": "Log Level",
+                    "value": "INFO",
+                    "type": "ListSelection",
+                    "choices": [ "ALL", "FATAL", "ERROR", "WARN", "INFO", "DEBUG", "TRACE", "OFF" ]
+                }
+            ]
+        },
+        {
+            "name": "email",
+            "label": "E-Mail Options",
+            "valid": false,
+            "validDomains": [ "sial.com", "bioreliance.com", "emdmillipore.com", "go.sigmaaldrich.com", "emdserono.com", "merck.de", "merckgroup.com"
+                            ],
+            "adminEmailAddresses": [ "sindy.john@sial.com" ],
+            "options": [
+                {
+                    "name": "sender",
+                    "label": "Sender Address",
+                    "value": "",
+                    "fieldLength": 50,
+                    "type": "Email",
+                    "required": true
+                },
+                {
+                    "name": "recipients",
+                    "label": "Recipient Adresses",
+                    "value": "",
+                    "type": "Email",
+                    "fieldLength": 50,                    
+                    "multiple": true,
+                    "required": true
+                },
+                {
+                    "name": "subject",
+                    "label": "Subject",
+                    "fieldLength": 50,                    
+                    "value": ""
+                },
+                {
+                    "name": "messageBody",
+                    "fieldLength": 50,
+                    "label": "Message Body",
+                    "value": ""
+                },
+                {
+                    "name": "ccAdmin",
+                    "label": "CC Application Admin",
+                    "value": false,
+                    "type": "Boolean"
+                },
+                {
+                    "name": "attachFile",
+                    "label": "Attach Results File",
+                    "type": "Boolean",
+                    "value": false
+                },
+                {
+                    "name": "attachmentMaxSizeMb",
+                    "label": "Maximum Attachement Size (MB)",
+                    "value": 25,
+                    "type": "Number",
+                    "maxValue": null,
+                    "minValue": 0,
+                    "readOnly": true
+                }
+            ]
+        },
+        {
+            "name": "output" ,
+            "label": "Output Options",
+            "valid": true,
+            "options": [
+                {
+                    "name": "baseDirectory",
+                    "label": "Base Output Directory",
+                    "fieldLength": 50,
+                    "value": "/tmp"
+                },
+                {
+                    "name": "output_file_permissions",
+                    "label": "Output File Permissions",
+                    "type": "Number",
+                    "value": 444,
+                    "readOnly": true
+                },
+                {
+                    "name": "output_dir_permissions",
+                    "label": "Output Directory Permissions",
+                    "type": "Number",
+                    "value": 555,
+                    "readOnly": true
+                }
+            ]
+        },
+        {
+            "name": "readsLabels",
+            "label": "Reads Labels",            
+            "valid": true,
+            "options": [                    
+                {
+                    "name": "readsFile1Label",
+                    "label": "Reads File 1 Label",
+                    "value": "R1",
+                    "fieldLength": 5,
+                    "align": "right"
+                },
+                {
+                    "name": "readsFile2Label",
+                    "label": "ReadsFile 2 Label",
+                    "value": "R2",
+                    "fieldLength": 5,
+                    "align": "right"
+                }
+            ]
+        },
+        {
+            "name": "indexLabels",
+            "label": "Index Labels",
+            "valid": true,
+            "options": [
+                {
+                    "name": "indexFile1Label",
+                    "label": "Index File 1 Label",
+                    "value": "I1",
+                    "fieldLength": 5,
+                    "align": "right"                    
+                },
+                {
+                    "name": "indexFile2Label",
+                    "label": "Index File 2 Label",
+                    "value": "I2",
+                    "fieldLength": 5,
+                    "align": "right"                    
+                }
+            ]
+        }
+    ]
+}
